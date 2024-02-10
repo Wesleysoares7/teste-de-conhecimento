@@ -79,13 +79,54 @@ const perguntas = [
 
 const quiz = document.querySelector("#quiz");
 const template = document.querySelector("template");
-
+const proximo = document.querySelector("#proximo");
+const resultado = document.querySelector("#resultado");
+const botoesDiv = document.querySelector("#botoes");
 const corretas = new Set();
 const totalDePerguntas = perguntas.length;
-const mostrarTotal = document.querySelector("#acertos span");
-mostrarTotal.textContent = corretas.size + " de " + totalDePerguntas;
+// const mostrarTotal = document.querySelector("#acertos span");
+// mostrarTotal.textContent = corretas.size + " de " + totalDePerguntas;
+let indexPergunta = 0;
 
-for (const item of perguntas) {
+const contarAcertos = (event, item) => {
+  const estaCorreta = event.target.value == item.correta;
+
+  corretas.delete(item);
+  if (estaCorreta) {
+    corretas.add(item);
+  }
+
+  // mostrarTotal.textContent = corretas.size + " de " + totalDePerguntas;
+};
+
+const imprimirPerguntas = () => {
+  for (const item of perguntas) {
+    const quizItem = template.content.cloneNode(true);
+    quizItem.querySelector("h3").textContent = item.pergunta;
+
+    for (let resposta of item.respostas) {
+      const dt = quizItem.querySelector("dl dt").cloneNode(true);
+      dt.querySelector("span").textContent = resposta;
+      dt.querySelector("input").setAttribute(
+        "name",
+        "pergunta-" + perguntas.indexOf(item)
+      );
+      dt.querySelector("input").value = item.respostas.indexOf(resposta);
+      dt.querySelector("input").addEventListener("change", (event) =>
+        contarAcertos(event, item)
+      );
+
+      quizItem.querySelector("dl").appendChild(dt);
+    }
+
+    quizItem.querySelector("dl dt").remove();
+
+    quiz.appendChild(quizItem);
+  }
+};
+
+const imprimirPergunta = (index) => {
+  const item = perguntas[index];
   const quizItem = template.content.cloneNode(true);
   quizItem.querySelector("h3").textContent = item.pergunta;
 
@@ -97,16 +138,9 @@ for (const item of perguntas) {
       "pergunta-" + perguntas.indexOf(item)
     );
     dt.querySelector("input").value = item.respostas.indexOf(resposta);
-    dt.querySelector("input").onchange = (event) => {
-      const estaCorreta = event.target.value == item.correta;
-
-      corretas.delete(item);
-      if (estaCorreta) {
-        corretas.add(item);
-      }
-
-      mostrarTotal.textContent = corretas.size + " de " + totalDePerguntas;
-    };
+    dt.querySelector("input").addEventListener("change", (event) =>
+      contarAcertos(event, item)
+    );
 
     quizItem.querySelector("dl").appendChild(dt);
   }
@@ -114,4 +148,51 @@ for (const item of perguntas) {
   quizItem.querySelector("dl dt").remove();
 
   quiz.appendChild(quizItem);
-}
+};
+
+const imprimirResultado = () => {
+  const nota = document.createElement("p");
+  if (corretas.size < 5) {
+    nota.innerText = `Você só acertou ${corretas.size} perguntas! Tente novamente`;
+  } else {
+    nota.innerText = `Você acertou ${corretas.size} perguntas! Parabéns!!`;
+  }
+  resultado.appendChild(nota);
+};
+
+const avancarPergunta = () => {
+  quiz.innerHTML = "";
+  if (indexPergunta < perguntas.length - 1) {
+    indexPergunta += 1;
+    imprimirPergunta(indexPergunta);
+  } else {
+    proximo.remove();
+    imprimirResultado();
+    reiniciar();
+  }
+};
+
+const handleReiniciar = () => {
+  resultado.innerHTML = "";
+  botoesDiv.innerHTML = "";
+  const proximoBotao = document.createElement("button");
+  proximoBotao.id = "proximo";
+  proximoBotao.innerText = "Próximo";
+  proximoBotao.addEventListener("click", avancarPergunta);
+  botoesDiv.appendChild(proximoBotao);
+  indexPergunta = 0;
+  imprimirPergunta(indexPergunta);
+};
+
+const reiniciar = () => {
+  const reiniciarBotao = document.createElement("button");
+  reiniciarBotao.innerText = "Reiniciar";
+  reiniciarBotao.addEventListener("click", handleReiniciar);
+  botoesDiv.appendChild(reiniciarBotao);
+};
+
+proximo.addEventListener("click", avancarPergunta);
+
+window.onload = () => {
+  imprimirPergunta(0);
+};
