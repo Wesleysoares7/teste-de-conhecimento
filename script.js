@@ -1,6 +1,6 @@
 const perguntas = [
   {
-    pergunta: "Qual é a seção mais importante de um currículo?",
+    pergunta: "1. Qual é a seção mais importante de um currículo?",
     respostas: [
       "Experiência profissional",
       "Objetivo profissional",
@@ -9,23 +9,23 @@ const perguntas = [
     correta: 0,
   },
   {
-    pergunta: "Qual é a extensão recomendada para um currículo?",
+    pergunta: "2. Qual é a extensão recomendada para um currículo?",
     respostas: ["1 página", "2 páginas", "3 páginas"],
     correta: 1,
   },
   {
-    pergunta: "Que tipo de fonte é mais recomendada para um currículo?",
+    pergunta: "3. Que tipo de fonte é mais recomendada para um currículo?",
     respostas: ["Arial", "Times New Roman", "Calibri"],
     correta: 2,
   },
   {
     pergunta:
-      "Qual é o melhor formato de arquivo para enviar um currículo por e-mail?",
+      "4. Qual é o melhor formato de arquivo para enviar um currículo por e-mail?",
     respostas: ["PDF", "Word", "TXT"],
     correta: 0,
   },
   {
-    pergunta: "Qual deve ser a ordem das seções em um currículo?",
+    pergunta: "5. Qual deve ser a ordem das seções em um currículo?",
     respostas: [
       "Objetivo, Formação, Experiência",
       "Experiência, Formação, Objetivo",
@@ -34,7 +34,8 @@ const perguntas = [
     correta: 1,
   },
   {
-    pergunta: "Qual é a importância de revisar o currículo antes de enviá-lo?",
+    pergunta:
+      "6. Qual é a importância de revisar o currículo antes de enviá-lo?",
     respostas: [
       "Pouca importância",
       "Muita importância",
@@ -43,7 +44,7 @@ const perguntas = [
     correta: 1,
   },
   {
-    pergunta: "O que deve ser evitado em um currículo?",
+    pergunta: "7. O que deve ser evitado em um currículo?",
     respostas: [
       "Informações relevantes",
       "Erros gramaticais e ortográficos",
@@ -52,12 +53,12 @@ const perguntas = [
     correta: 1,
   },
   {
-    pergunta: "É recomendado incluir uma foto no currículo?",
+    pergunta: "8. É recomendado incluir uma foto no currículo?",
     respostas: ["Sim, sempre", "Depende do país", "Não, nunca"],
     correta: 2,
   },
   {
-    pergunta: "O que é um currículo cronológico?",
+    pergunta: "9. O que é um currículo cronológico?",
     respostas: [
       "Um currículo organizado por ordem alfabética",
       "Um currículo organizado por ordem de importância",
@@ -67,7 +68,7 @@ const perguntas = [
   },
   {
     pergunta:
-      "Quais são as seções opcionais que podem ser incluídas em um currículo?",
+      "10. Quais são as seções opcionais que podem ser incluídas em um currículo?",
     respostas: [
       "Referências e hobbies",
       "Experiência profissional e formação acadêmica",

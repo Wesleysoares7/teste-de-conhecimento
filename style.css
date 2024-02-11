@@ -56,7 +56,7 @@ header h1 {
   background-color: #1e293b;
 }
 
-.quiz-item h3:before {
+/* .quiz-item h3:before {
   counter-increment: quiz-item;
   content: counter(quiz-item);
   background-color: #475569;
@@ -68,7 +68,7 @@ header h1 {
   font-size: 12px;
   border-radius: 50%;
   flex-shrink: 0;
-}
+} */
 
 .quiz-item dl {
   padding: 20px 24px;
@@ -111,7 +111,20 @@ input:checked::before {
   border-radius: 50%;
 }
 
-#acertos {
+#resultado {
+}
+
+button {
+  background-color: #a3e635;
+  width: 70px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* #acertos {
   text-align: center;
   background-color: #a3e635;
   position: fixed;
@@ -119,4 +132,4 @@ input:checked::before {
   left: 0;
   width: 100%;
   padding: 12px;
-}
+} */
